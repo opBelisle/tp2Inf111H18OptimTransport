@@ -2,8 +2,8 @@ package enginCartes;
 
 
 /**
- * Cette classe implémente le lien entre 2 villes. Les villes sont référencés à la 
- * population
+ * Cette classe implémente le lien entre 2 villes. 
+ * Les villes sont référencées à la population.
  * 
  * 
  * Liste des méthodes publiques: 
@@ -17,6 +17,11 @@ package enginCartes;
  *     - toString, obtient chaine de caractères
  *
  * @author Fred Simard | ETS, 
+ * 
+ * @revision Pierre Bélisle | ETS
+ * 
+ *              principalement : Correction orthographique et 80 colonne max.
+ *                               
  * @version Hiver 2018
  */
 
@@ -29,8 +34,8 @@ public class Lien{
     /**
      * Constructeur avec paramètres
      * 
-     * @param villeA, premiere ville
-     * @param villeB, seconde ville
+     * @param villeA, La premiere ville.
+     * @param villeB, La seconde ville.
      */
     public Lien(Ville villeA, Ville villeB){
         this.villesLies[0] = villeA;
@@ -40,8 +45,8 @@ public class Lien{
     /**
      * Constructeur par copie
      * 
-     * @param villeA, premiere ville
-     * @param villeB, seconde ville
+     * @param villeA, La premiere ville.
+     * @param villeB, La seconde ville.
      */
     public Lien(Lien autreLien){
     	this.villesLies[0] = autreLien.villesLies[0];
@@ -51,23 +56,21 @@ public class Lien{
     /**
      * Détermine si la ville est membre de l'objet
      * 
-     * @param ville, ville candidate
-     * @return true si la ville candidate est membre
+     * @param ville, La ville candidate.
+     * @return true Si la ville candidate est membre.
      */
     public boolean estMembre(Ville ville){
     	
     	// compare les références
-    	if(villesLies[0] == ville || villesLies[1] == ville){
-    		return true;
-    	}
-    	return false;
+    	return (villesLies[0] == ville || villesLies[1] == ville);
     }
 
     /**
-     * Obtient la ville qui complémente la ville passé en paramètre
+     * Obtient la ville qui complémente la ville passée en paramètre.
      * 
-     * @param ville, ville source
-     * @return ville destination
+     * 
+     * @param ville, La ville source.
+     * @return La ville destination ou null si ville n'existe pas dans le lien.
      */
     public Ville getDest(Ville ville){
     	
@@ -82,22 +85,23 @@ public class Lien{
     }
     
     /**
-     * Méthode permettant de changer (muter) une ville dans le lien
-     * S'assure de ne pas produire un lien qui mène à lui-même
+     * Méthode permettant de changer (muter) une ville dans le lien.
+     * S'assure de ne pas produire un lien qui mène à lui-même.
      * 
-     * @param nouvelVille, nouvelle ville à ajouter
-     * @param position, position {0,1} où placer la ville
-     * @return true, si la mutation est accepté
+     * @param nouvelVille, La nouvelle ville à ajouter.
+     * @param position, La position {0,1} où placer la ville.
+     * @return true, si la mutation est acceptée.
      */
     public boolean mute(Ville nouvelVille, int position){
         
         boolean mutationValide = false;
         
-        // valide la position
+        // Valide la position.
         if(position == 0 || position == 1){
                 
-        	// s'assure que la ville n'est pas membre du lien
+        	// S'assure que la ville n'est pas membre du lien.
             if(nouvelVille!=villesLies[0] && nouvelVille!=villesLies[1]){
+            	
                 villesLies[position] = nouvelVille;
                 mutationValide = true;
             }
@@ -107,16 +111,18 @@ public class Lien{
     }
     
     /**
-     * Obtient la longeur du lien
-     * @return distance entre les villes du lien
+     * Obtient la longeur du lien.
+     * 
+     * @return La distance entre les villes du lien.
      */
     public double getLongueur(){
         return villesLies[0].calculDistanceDe(villesLies[1]);
     }
 
     /**
-     * permet de copier le lien 
-     * @return une copie du lien
+     * Permet de copier le lien.
+     *  
+     * @return Une copie du lien.
      */
     public Object copie(){
         return new Lien(this);
@@ -124,8 +130,9 @@ public class Lien{
     
 
     /**
-     * obtient une représentation chaine de caractère de l'objet
-     * @return une chaine de caractère
+     * Obtient une représentation chaine de caractère de l'objet.
+     * 
+     * @return Une chaîne de caratères représentant le lien.
      */
 	public String toString(){
 		return new String(villesLies[0] + " lie à " + villesLies[1]);
